@@ -1,0 +1,33 @@
+# FastAPI and Server
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.6
+
+# LangGraph and LangChain
+langgraph==0.2.0
+langchain==0.2.16
+langchain-groq==0.1.9
+langchain-core==0.2.38
+
+# HTTP Client
+httpx==0.26.0
+
+# Authentication
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# Environment and Utils
+python-dotenv==1.0.0
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# Async Support
+asyncio==3.4.3
+
+# Vector Memory (RAG)
+chromadb==0.4.22
+langchain-community==0.2.16
+sentence-transformers==2.2.2
+
+# LangSmith Observability & Evaluation
+langsmith>=0.1.0
