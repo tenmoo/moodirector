@@ -147,6 +147,13 @@ moo-director/
 - **Prompt Alignment**: Validates that the scene matches the user's request
 - **Async Processing**: Support for long-running scene generation
 
+## AI Assistance Disclosure
+
+Portions of this project were developed with the assistance of AI-based tools. 
+All generated code was reviewed, modified, and validated by the author.
+
 ## License
 
-MIT
+This project is licensed under the Apache License 2.0.
+
+See the [LICENSE](/LICENSE) file for details.
