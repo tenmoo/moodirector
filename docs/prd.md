@@ -166,6 +166,43 @@ User Prompt
 - Markdown-rendered final reports
 - Agent team panel showing workflow
 
+### 5.6 LangSmith Observability & Evaluation ✅ **IMPLEMENTED**
+
+LangSmith is integrated for full observability and quality evaluation of the multi-agent system.
+
+#### Tracing
+- Automatic tracing of all LangChain/LangGraph operations when enabled via environment variables
+- Full workflow visualization showing each agent's execution path
+- Per-agent LLM call details: input prompts, output responses, token counts, and latency
+- Custom metadata tagging by agent name and model for easy filtering
+- Minimal overhead (~10-50ms per trace) using async tracing
+
+#### Evaluation Framework
+Four custom evaluators assess scene generation quality:
+
+| Evaluator | Description |
+|-----------|-------------|
+| `scene_completeness_evaluator` | Checks if all requested objects are present in the scene |
+| `prompt_alignment_evaluator` | Keyword matching to verify output aligns with the original prompt |
+| `validation_pass_evaluator` | Checks if the scene passed internal Critic validation |
+| `object_count_evaluator` | Verifies object count is within a reasonable range |
+
+#### Evaluation Modes
+- **Batch evaluation**: Run evaluations against LangSmith datasets with stored prompts and expected outputs
+- **Quick evaluation**: Ad-hoc single-prompt evaluation without requiring LangSmith datasets (no API key needed)
+- **Dataset management**: API endpoints to create, list, and manage evaluation datasets
+
+#### API Endpoints
+- `POST /api/v1/evaluation/datasets/create` — Create evaluation datasets
+- `GET /api/v1/evaluation/datasets` — List datasets
+- `POST /api/v1/evaluation/run` — Run batch evaluation against a dataset
+- `POST /api/v1/evaluation/quick` — Quick single-prompt evaluation
+
+#### Configuration
+- Opt-in via `LANGCHAIN_TRACING_V2=true` and `LANGCHAIN_API_KEY` environment variables
+- Configurable project name (default: `moo-director`)
+- Graceful degradation — system works fully without LangSmith configured
+
 ## 6. User Experience & Interface
 
 ### 6.1 Interface Components ✅ **IMPLEMENTED**
@@ -266,6 +303,8 @@ User Prompt
 - Agent action logging with details
 - Health check endpoints
 - Console logging for debugging
+- **LangSmith** integration for LLM observability (traces, token usage, latency)
+- **LangSmith Evaluation** framework with 4 custom evaluators
 - Ready for: Sentry, DataDog, or similar
 
 ### 7.4 Performance Requirements ✅ **MET**
@@ -319,6 +358,8 @@ User Prompt
 - [x] Material Scientist with PBR presets
 - [x] Cinematographer with lighting presets
 - [x] Critic with validation checks and revision loop
+- [x] LangSmith tracing for LLM observability
+- [x] LangSmith evaluation framework with custom evaluators
 - [x] FastAPI backend with RESTful endpoints
 - [x] React frontend with TypeScript
 - [x] Dark theme UI
@@ -444,6 +485,9 @@ User Prompt
 - **Vector Memory (RAG)** with ChromaDB for scene retrieval
 - **Semantic search** for similar past scenes
 - **Orchestrator memory integration** for context-aware planning
+- **LangSmith observability** with automatic tracing of all LLM calls
+- **LangSmith evaluation** framework with 4 custom evaluators (completeness, alignment, validation, object count)
+- **Evaluation API endpoints** for batch and quick evaluations
 - FastAPI backend with REST API
 - React + TypeScript frontend
 - Dark theme UI (#0a0a0a background)
@@ -477,6 +521,7 @@ User Prompt
 - **Agent Documentation**: [AGENTS.md](AGENTS.md)
 - **Agent Communication**: [AGENT_COMMUNICATION.md](AGENT_COMMUNICATION.md)
 - **Vector Memory (RAG)**: [MEMORY.md](MEMORY.md)
+- **LangSmith Integration**: [LANGSMITH.md](LANGSMITH.md)
 - **Deployment Guide**: [DEPLOYMENT.md](DEPLOYMENT.md)
 - **Project Structure**: [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)
 - **Quick Reference**: [QUICK_REFERENCE.md](QUICK_REFERENCE.md)
